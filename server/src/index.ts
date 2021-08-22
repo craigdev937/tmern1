@@ -4,16 +4,24 @@ import logger from "morgan";
 import mongoose from "mongoose";
 import { config } from "./config/keys";
 import { fileRt } from "./routes/fileRt";
+import { v2 as cloudinary } from "cloudinary";
 
 (async () => {
+    // MondoDB and Express.
     await mongoose.connect(config.MONGO_URI, {
         useNewUrlParser: true, useFindAndModify: false,
         useUnifiedTopology: true, useCreateIndex: true })
     .then(() => console.log("MongoDB is now Connected!"))
     .catch((error) => console.log(error));
-
     const app: express.Application = express();
     app.use(helmet());
+
+    // Cloudinary Connection
+    cloudinary.config({
+        cloud_name: config.CLOUDINARY_API_CLOUD,
+        api_key: config.CLOUDINARY_API_KEY,
+        api_secret: config.CLOUDINARY_API_SECRET
+    })
 
     // CORS Setup.
     app.use((req, res, next) => {
