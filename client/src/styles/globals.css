@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --orange: #fac9b8;
+    --blue: #666a86;
+}
+
+body {
+    background-color: var(--blue);
+}
+
+
+
+

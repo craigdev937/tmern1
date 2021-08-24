@@ -25,8 +25,7 @@ async (req, res, next) => {
         });
         res.status(200).json({
             id: file._id,
-            downloadPageLink: `${config.API_BASE_ENDPOINT_CLIENT}
-                download/${file._id}`
+            downloadPageLink: `${config.API_BASE_ENDPOINT_CLIENT}download/${file._id}`
         })
     } catch (error) {
         res.status(500).json({msg: error.message});
